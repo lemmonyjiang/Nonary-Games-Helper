@@ -22,21 +22,25 @@ class NineHelper:
 
     @classmethod
     def list_parts(cls, door, participants):
-        parts = cls.to_int(participants)
         _door = int(door)
         ret = []
         num = 3
         while num <= 5:
             for c in combin(participants, num):
                 if cls.calc_root(c) == _door:
-                    ret.append(c)
+                    line = {}
+                    line['fit'] = c
+                    line['fit_root'] = door
+                    line['left'] = [p for p in participants if p not in c]
+                    line['left_root'] = cls.calc_root(line['left'])
+                    ret.append(line)
             num += 1
         return ret
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
-        self.render("templates/index.html", title="Index")
+        self.render("templates/index.html", title="Helper for <<Zero Escape: 999>>")
 
 class BaseRequestHandler(tornado.web.RequestHandler):
     def initialize(self):
@@ -70,5 +74,5 @@ application = tornado.web.Application([
 ], **settings)
 
 if __name__ == "__main__":
-    application.listen(8888)
+    application.listen(18888)
     tornado.ioloop.IOLoop.current().start()

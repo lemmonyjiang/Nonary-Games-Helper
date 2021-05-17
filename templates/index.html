@@ -10,7 +10,7 @@
             <div>Calc Root by Participants:
                 <button id="btn-all-parts">All</button>
                 <button id="btn-none-parts">Clear</button></div>
-            <div id="div-participants">
+            <div id="div-participants" style="margin-top: 10px;">
                 {% for i in range(9) %}
                     <img id="{{ "img_parti_%d" % (i+1) }}" 
                          src="{{ static_url("char_%d.png" % (i+1)) }}" 
@@ -24,12 +24,12 @@
             </div>
         </div>
         <div>
-            <div>List Participants:</div>
-            <div>
+            <div>List Participants by Root/Door Number:</div>
+            <div style="margin-bottom: 10px;">
                 {% for i in range(9) %}
                 <button class="door_btn">{{ i+1 }}</button>
                 {% end %}
-                <span class="door_num"></span>
+                <span class="door_num" style="display: none;"></span>
             </div>
             <div class="div-list-parts"></div>
         </div>

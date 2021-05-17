@@ -1,8 +1,8 @@
 $.when($.ready).then(function() {
-    $(".img_btn").click(img_btn_click);
-    $(".door_btn").click(door_btn_click);
-    $("#btn-all-parts").click(all_parts_click);
-    $("#btn-none-parts").click(none_parts_click);
+    $(".img_btn").on('click touchstart', img_btn_click);
+    $(".door_btn").on('click touchstart',door_btn_click);
+    $("#btn-all-parts").on('click touchstart',all_parts_click);
+    $("#btn-none-parts").on('click touchstart',none_parts_click);
     calc_parts_root();
 });
 

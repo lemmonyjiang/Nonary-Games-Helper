@@ -1,9 +1,14 @@
 {% for l in parts_list %}
 <div>
-    {% for i in l %}
-    <img src="{{ static_url("char_%s.png" % (i)) }}" 
-    alt="{{ "%s" % (i) }}" 
-    class="">
+    <div class="line_block">
+    {% for i in l.get('fit') %}
+    <img src="{{ static_url("char_%s.png" % (i)) }}" alt="{{ "%s" % (i) }}" class="parts_list">
     {% end %}
+    <span class="door_num">{{ l.get('fit_root') }}</span>
+    {% for i in l.get('left') %}
+    <img src="{{ static_url("char_%s.png" % (i)) }}" alt="{{ "%s" % (i) }}" class="parts_list">
+    {% end %}
+    <span class="door_num">{{ l.get('left_root') }}</span>
+    <div class="line_block">
 </div>
 {% end %}
