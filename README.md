@@ -1,6 +1,6 @@
 # the nonary games helper
-A calculator for Zero Escape: The Nonary Games
-====
+> A calculator for Zero Escape: The Nonary Games
+
 
 Functions
 ----
