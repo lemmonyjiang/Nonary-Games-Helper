@@ -3,6 +3,7 @@ $.when($.ready).then(function() {
     $(".door_btn").click(door_btn_click);
     $("#btn-all-parts").click(all_parts_click);
     $("#btn-none-parts").click(none_parts_click);
+    calc_parts_root();
 });
 
 function post(url, params) {
