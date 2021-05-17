@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="{{ static_url("styles.css") }}" type="text/css">
+        <script type="text/javascript" src="{{ static_url("jquery.3.6.0.min.js") }}"></script>
+        <script type="text/javascript" src="{{ static_url("site.js") }}"></script>
+    </head>
+    <body>
+        <div>
+            <div>Calc Root by Participants:
+                <button id="btn-all-parts">All</button>
+                <button id="btn-none-parts">Clear</button></div>
+            <div id="div-participants">
+                {% for i in range(9) %}
+                    <img id="{{ "img_parti_%d" % (i+1) }}" 
+                         src="{{ static_url("char_%d.png" % (i+1)) }}" 
+                         alt="{{ "%d" % (i+1) }}" 
+                         class="img_btn participant selected">
+                {% end %}
+                <span class="root_result"></span>
+            </div>
+            <div class="buttons">
+                
+            </div>
+        </div>
+        <div>
+            <div>List Participants:</div>
+            <div>
+                {% for i in range(9) %}
+                <button class="door_btn">{{ i+1 }}</button>
+                {% end %}
+                <span class="door_num"></span>
+            </div>
+            <div class="div-list-parts"></div>
+        </div>
+    </body>
+</html>

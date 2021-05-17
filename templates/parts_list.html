@@ -1,0 +1,9 @@
+{% for l in parts_list %}
+<div>
+    {% for i in l %}
+    <img src="{{ static_url("char_%s.png" % (i)) }}" 
+    alt="{{ "%s" % (i) }}" 
+    class="">
+    {% end %}
+</div>
+{% end %}
