@@ -1,4 +1,4 @@
-# nonary_games_helper
+# the nonary games helper
 A calculator for Zero Escape: The Nonary Games
 ====
 
