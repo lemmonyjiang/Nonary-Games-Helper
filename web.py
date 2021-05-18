@@ -5,9 +5,30 @@ import tornado.web
 from itertools import combinations as combin
 
 class NineHelper:
+    participants = [i+1 for i in range(9)]
+    """
+    Convert a str list to int list.
+    e.g. ['1','2','3'] -> [1,2,3]
+    """
     @classmethod
     def to_int(cls, str_list):
-        return map(lambda x: int(x), str_list)
+        #return map(lambda x: int(x), str_list)
+        return [int(x) for x in str_list]
+
+    """
+    Convert a number to digit(int) list.
+    e.g. 123 -> [1,2,3]
+    """
+    @classmethod
+    def to_list(cls, number):
+        digits = []
+        digits.append(number % 10)
+        remain = number // 10
+        while remain > 0:
+            digits.append(remain % 10)
+            remain = remain // 10
+        return digits
+        pass
 
     @classmethod
     def calc_root(cls, participants):
@@ -15,7 +36,7 @@ class NineHelper:
             parts = cls.to_int(participants)
             s = sum(parts)
             while s >= 10:
-                s = cls.calc_root([chr for chr in str(s)])
+                s = cls.calc_root(cls.to_list(s))
             return s
         else:
             return 0
@@ -37,10 +58,18 @@ class NineHelper:
             num += 1
         return ret
 
+    @classmethod
+    def get_participants(cls):
+        return cls.participants
+    
+    @classmethod
+    def update_participants(cls, parts):
+        cls.participants = cls.to_int(parts)
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
-        self.render("templates/index.html", title="Helper for <<Zero Escape: 999>>")
+        self.render("templates/index.html", title="Helper for <<Zero Escape: 999>>", parts=NineHelper.get_participants())
 
 class BaseRequestHandler(tornado.web.RequestHandler):
     def initialize(self):
@@ -49,7 +78,9 @@ class BaseRequestHandler(tornado.web.RequestHandler):
 
 class CalcRootHandler(BaseRequestHandler):
     def post(self):
-        self.write(dict(root=NineHelper.calc_root(self.body.get('participants'))))
+        parts = self.body.get('participants')
+        NineHelper.update_participants(parts)
+        self.write(dict(root=NineHelper.calc_root(parts)))
 
 class ListPartsHandler(BaseRequestHandler):
     def post(self):

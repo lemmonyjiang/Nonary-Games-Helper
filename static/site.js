@@ -3,6 +3,7 @@ $.when($.ready).then(function() {
     $(".door_btn").on('click touchstart',door_btn_click);
     $("#btn-all-parts").on('click touchstart',all_parts_click);
     $("#btn-none-parts").on('click touchstart',none_parts_click);
+    update_parts_status();
     calc_parts_root();
 });
 
@@ -30,6 +31,19 @@ function all_parts_click(){
         img.classList.add('selected');
     });
     calc_parts_root();
+}
+
+function update_parts_status(){
+    $(".participant").each(function(i, img) {
+        if (participants_cache.indexOf(i+1) >= 0) {
+            img.classList.remove('unselected');
+            img.classList.add('selected');
+        } else {
+            img.classList.remove('selected');
+            img.classList.add('unselected');
+        }
+        
+    });
 }
 
 function calc_parts_root() {

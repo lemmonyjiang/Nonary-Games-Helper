@@ -4,6 +4,9 @@
         <link rel="stylesheet" href="{{ static_url("styles.css") }}" type="text/css">
         <script type="text/javascript" src="{{ static_url("jquery.3.6.0.min.js") }}"></script>
         <script type="text/javascript" src="{{ static_url("site.js") }}"></script>
+        <script lang="javascript">
+            var participants_cache = {{ parts }};
+        </script>
     </head>
     <body>
         <div>
